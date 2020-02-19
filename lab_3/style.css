@@ -7,7 +7,7 @@ html, body {
 
 html {
   font-size: 10px;
-  background-color: #a9a9a9;
+  background-color: blue;
 }
 
 body {
@@ -20,11 +20,13 @@ body {
 
 h1, h2, h3 {
   font-family: 'Odibee Sans', cursive;
+  font-weight:500
   color: #2a2a2a;
 }
 
 p, input, li {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Odibee Sans', cursive;
+  font-weight:700
   color: #2a2a2a;
 }
 
@@ -135,4 +137,5 @@ aside img {
 
 footer {
   margin-top: 10px;
+
 }
