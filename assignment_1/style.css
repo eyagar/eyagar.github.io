@@ -25,12 +25,17 @@
 }
 .first{
     width: 33%;
+    background-color:#93FF61;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-style: italic;
 }
 .second{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-style: italic;
     margin-bottom: 2px;
+    background-color:#93FF61;
 }
 
 .first img{
@@ -39,7 +44,40 @@
     border-width: 1px;
 }
 
+h2{
+    font-family: 'Lobster Two', ;    
+    font-weight:900
+}
+
+.caption{
+    background-color: #E375FF;
+    padding: 1%;
+}
+
+
+
 body > * {
     background-color: #57EBA6;
-    padding: 1%;
+    padding: 1%;   
+    
   }
+
+@media screen and (max-width: 1000px) {
+    body {
+        margin-bottom: 15px;
+    
+    }
+
+    .first{
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .first img{
+        width: 100%;
+        margin-right: 20px;
+    }
+
+
+ }
