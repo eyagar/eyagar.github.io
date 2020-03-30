@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Test  JSON page</title>
+  <title>Test JSON page</title>
   <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 
@@ -20,8 +20,8 @@
   <script>
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
     function clickMe() {
-      const content = document.querySelector(".header");
-        content.innerHTML = "Eymen's list of countries";
+      const header= document.querySelector(".header");
+        header.innerHTML = "Eymen's list of countries";
       const countries = [
       { "name": "Afghanistan", "code": "AF" },
       { "name": "Åland Islands", "code": "AX" },
@@ -271,9 +271,19 @@
       var x = document.createElement("ol");
       var app = document.querySelector('.content');
       app.appendChild(x);
-      ol.classname="countries"
-      var randomcountries=random.r
+      x.classList.add("countries");
 
+      var countryList = [ ];
+      var  a=getINT()
+      a=a.sort(sortNum)
+      a.array.forEach(element => {
+        countryList.push(countries[element])
+        
+      });
+
+      function random(number) {
+      return Math.floor(Math.random() * (number+1));
+    }
       }
 
 
