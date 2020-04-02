@@ -101,3 +101,9 @@ h3 {
   position: relative;
   top: 1px;
 }
+
+/*start of lab css*/
+#map1{
+  height: 640px;
+  width: 480px;
+}
