@@ -10,23 +10,100 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a useful chart full of food data.
-        </div>
+          <div id="chartContainer" style="height: 600px; width: 100%;"></div>       
+       </div>
         <div class="footer">Let's eat out in the future!</div>
       </div>
     </div>
     <script>
-      fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json') // replace this with the food safety data set
-        .then((response) => {
-          console.log(response);
-          return response
-          }) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
-        .then((response) =>response.json()) // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
-        .then((data)=>{
+     fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json')
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-          return data;
-          // return data; // <- this will pass the data to the next "then" statement when I'm ready.
-        })
+        const clearEmptyData = data.filter((f) => f.geocoded_column_1);
+        const refined = clearEmptyData.map((m) => ({
+          category: m.category,
+          name: m.name,
+        }));
+        return refined;
+      })
+      .then((data) => {
+        return data.reduce((result, current) => {
+          if (!result[current.category]) {
+            result[current.category] = [];
+          }
+          result[current.category].push(current);
+          return result;
+        }, {});
+      })
+      .then((data) => {
+        console.log('new data', data);
+        const reformattedData = Object.entries(data).map((current, i) => {
+          console.log(current);
+          return {
+            y: current[1].length,
+            label: current[0],
+          };
+        });
+
+        return reformattedData;       
+      })
+      .then((results) => {
+        console.log(results);
+        const chart = new CanvasJS.Chart('chartContainer', {
+          animationEnabled: true,
+          theme: "light2",
+          title: {
+            text: "Places to Eat",
+          },
+          axisX: {
+            labelBackgroundColor: "green",
+            labelFontColor: "white",
+            labelFontSize: 14,
+            margin: 10,
+            interval: 1,
+          },
+          axisY: {
+            interlacedColor: "rgb(119, 124, 119)",
+            gridColor: "rgb(255,255,255)",
+            scaleBreaks: {
+              type: "straight",
+              customBreaks: [
+                {
+                  startValue: 5,
+                  endValue: 15,
+                  color:"red"
+                },
+                {
+                  startValue: 60,
+                  endValue: 80,
+                  color:"red"
+                },
+                {
+                  startValue: 130,
+                  endValue: 140,
+                  color:"red"
+                },
+                {
+                  startValue: 220,
+                  endValue: 230,
+                  color:"red"
+                },
+                
+              ],
+            },
+          },
+          data: [
+            {
+              type: "bar",
+              dataPoints: results
+            },
+          ],
+        });
+        chart.render();
+      });
     </script>
   </body>
 </html>
+
+
