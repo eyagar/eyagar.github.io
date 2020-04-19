@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Replace Me With Your Lab Page</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">Replace Me With Your Lab Page</div>
+      <div class="content"></div>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    fetch('/api') // Rather than fetching from PG County, we're going to fetch from our own server.
+      .then(res => res.json())
+      .then(res => {
+        // Here's where your chart code should go.
+        const chart = new CanvasJS.Chart('chartContainer', {
+          animationEnabled: true,
+          theme: "light2",
+          title: {
+            text: "Places to Eat",
+          },
+          axisX: {
+            labelBackgroundColor: "green",
+            labelFontColor: "white",
+            labelFontSize: 14,
+            margin: 10,
+            interval: 1,
+          },
+          axisY: {
+            interlacedColor: "rgb(119, 124, 119)",
+            gridColor: "rgb(255,255,255)",
+            scaleBreaks: {
+              type: "straight",
+              customBreaks: [
+                {
+                  startValue: 5,
+                  endValue: 15,
+                  color:"red"
+                },
+                {
+                  startValue: 60,
+                  endValue: 80,
+                  color:"red"
+                },
+                {
+                  startValue: 130,
+                  endValue: 140,
+                  color:"red"
+                },
+                {
+                  startValue: 220,
+                  endValue: 230,
+                  color:"red"
+                },
+                
+              ],
+            },
+          },
+          data: [
+            {
+              type: "bar",
+              dataPoints: results
+            },
+          ],
+        });
+        chart.render();
+      });
+  </script>
+</body>
+
+</html>
